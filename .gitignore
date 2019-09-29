@@ -43,6 +43,8 @@
 *.launch
 */service/src/main/resources/static/*
 
-*/AppName-UI/node_modules/*
-*/AppName-UI/node/*
+*/StockApp-UI/node_modules/*
+*/StockApp-UI/node/*
+
+
 
