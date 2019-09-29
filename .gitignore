@@ -48,9 +48,6 @@
 
 .DS_Store
 .travis.yml
-Procfile.txt
-mvnw
-mvnw.cmd
 
 
 
