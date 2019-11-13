@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage("Compile") {
             steps {
-                sh "ls"
+                sh "docker image ls"
             }
         }
         stage("Unit test") {
