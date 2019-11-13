@@ -41,10 +41,6 @@
 # IDEs and editors
 */.idea/*
 *.launch
-*/service/src/main/resources/static/*
-
-*/StockApp-UI/node_modules/*
-*/StockApp-UI/node/*
 
 .DS_Store
 .travis.yml

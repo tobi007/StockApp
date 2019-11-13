@@ -1,6 +1,5 @@
 package com.tobi.stock.controllers.api;
 
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 /**
@@ -11,7 +10,7 @@ import javax.validation.constraints.NotNull;
 
 public class TradeStockRequest {
 
-    @NotBlank(message = "symbol is mandatory")
+    @NotNull(message = "symbol is mandatory")
     private String symbol;
     @NotNull(message = "numberOfShares is mandatory")
     private Long numberOfShares;

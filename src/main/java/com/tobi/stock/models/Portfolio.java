@@ -1,7 +1,7 @@
 package com.tobi.stock.models;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
@@ -22,7 +22,7 @@ public class Portfolio {
     private Long id;
 
     @Column(unique = true)
-    @NotBlank(message = "Portfolio's Name is mandatory")
+    @NotNull(message = "Portfolio's Name is mandatory")
     private String name;
 
     private String owner;

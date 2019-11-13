@@ -25,7 +25,7 @@ public abstract class BaseService<T, ID extends Serializable> {
     }
 
     public List<T> save(Iterable<T> t) {
-        return this.repository.saveAll(t);
+        return this.repository.save(t);
     }
 
     public T find(ID id) {
@@ -45,6 +45,6 @@ public abstract class BaseService<T, ID extends Serializable> {
     }
 
     public void delete(ID id) {
-        this.repository.deleteById(id);
+        this.repository.delete(id);
     }
 }

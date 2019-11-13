@@ -2,11 +2,9 @@ package com.tobi.stock.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.tobi.stock.enums.LatestPriceSourceType;
-import com.tobi.stock.services.api.IEXQuote;
 import com.tobi.stock.services.api.Quote;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.util.Date;
@@ -24,10 +22,10 @@ public class Stock {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @NotBlank(message = "Symbol is mandatory")
+    @NotNull(message = "Symbol is mandatory")
     private String symbol;
 
-    @NotBlank(message = "Company's Name is mandatory")
+    @NotNull(message = "Company's Name is mandatory")
     private String companyName;
 
     @NotNull(message = "price is mandatory")

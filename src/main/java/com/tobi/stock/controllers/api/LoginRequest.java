@@ -1,6 +1,5 @@
 package com.tobi.stock.controllers.api;
 
-import javax.validation.constraints.NotBlank;
 
 /**
  * Created by Kayode Emmanuel Oluwatobi

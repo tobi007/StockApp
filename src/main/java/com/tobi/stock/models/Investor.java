@@ -4,8 +4,9 @@ package com.tobi.stock.models;
 import com.tobi.stock.enums.RoleType;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.util.Set;
+
 
 /**
  * Created by Kayode Emmanuel Oluwatobi
@@ -21,17 +22,17 @@ public class Investor {
     private Long id;
 
     @Column(unique=true)
-    @NotBlank(message = "Email is mandatory")
+    @NotNull(message = "Email is mandatory")
     private String email;
 
     @Column(unique=true)
-    @NotBlank(message = "Email is mandatory")
+    @NotNull(message = "Email is mandatory")
     private String userName;
 
-    @NotBlank(message = "Email is mandatory")
+    @NotNull(message = "Email is mandatory")
     private String password;
 
-    @NotBlank(message = "Email is mandatory")
+    @NotNull(message = "Email is mandatory")
     private String fullName;
     private boolean enabled;
 

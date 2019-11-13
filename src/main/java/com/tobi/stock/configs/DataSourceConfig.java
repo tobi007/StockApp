@@ -1,9 +1,7 @@
-package com.teamapt.profectus.visa.settlementrecon.lib.config;
+package com.tobi.stock.configs;
 
-import com.teamapt.audit.lib.utils.AutowireUtil;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.actuate.health.DataSourceHealthIndicator;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceBuilder;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
@@ -11,8 +9,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 import org.springframework.core.annotation.Order;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
-import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
-import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
@@ -28,10 +24,9 @@ import java.util.Map;
 @Order(-100)
 @Configuration
 @EnableJpaRepositories(
-        basePackages = {"com.teamapt.profectus.settlementrecon.lib",
-                "com.teamapt.profectus.visa"},
-        entityManagerFactoryRef = "visaSettlementReconEntityManagerFactory",
-        transactionManagerRef = "settlementReconTransactionManager")
+        basePackages = {"com.tobi.stock"},
+        entityManagerFactoryRef = "stockAppEntityManagerFactory",
+        transactionManagerRef = "stockAppTransactionManager")
 public class DataSourceConfig {
 
     @Value("${datasource.primary.hibernate.dialect:org.hibernate.dialect.SQLServerDialect}")
@@ -51,7 +46,7 @@ public class DataSourceConfig {
 
     @Bean
     @Primary
-    LocalContainerEntityManagerFactoryBean visaSettlementReconEntityManagerFactory() {
+    LocalContainerEntityManagerFactoryBean stockAppEntityManagerFactory() {
 
 
         HibernateJpaVendorAdapter jpaVendorAdapter = new HibernateJpaVendorAdapter();
@@ -66,48 +61,17 @@ public class DataSourceConfig {
         factoryBean.setJpaVendorAdapter(jpaVendorAdapter);
         factoryBean.setJpaPropertyMap(prop);
 
-        factoryBean.setPackagesToScan("com.teamapt.profectus.settlementrecon", "com.teamapt.profectus.visa");
+        factoryBean.setPackagesToScan("com.tobi.stock");
         return factoryBean;
 
 
     }
 
 
-    @Bean(name = "settlementReconTransactionManager")
+    @Bean(name = "stockAppTransactionManager")
     @Primary
-    PlatformTransactionManager settlementReconTransactionManager() {
-        return new JpaTransactionManager(visaSettlementReconEntityManagerFactory().getObject());
-    }
-
-
-    @Bean(name = "inMemoryDs")
-    public DataSource inMemoryDataSource() {
-        EmbeddedDatabaseBuilder builder = new EmbeddedDatabaseBuilder();
-        return builder.setType(EmbeddedDatabaseType.H2)
-                .setName("NIBSSSettlementRecon")
-                .addScript("classpath:schema-h2.sql")
-                .build();
-    }
-
-
-    @Bean(name = "activitiInMemoryDatasource")
-    public DataSource inMemoryDatasource() {
-        EmbeddedDatabaseBuilder builder = new EmbeddedDatabaseBuilder();
-        return builder.setType(EmbeddedDatabaseType.H2)
-                .setName("nibssActivitiInMemoryDb")
-                .addScript("classpath:activiti-schema-h2.sql").build();
-    }
-
-    @Bean(name = "cbaDatasource")
-    @ConfigurationProperties(prefix = "datasource.cbaDatasource")
-    @ConditionalOnProperty(value = "datasource.cbaDatasource.url", matchIfMissing = false)
-    public DataSource cbaDatasource() {
-        return DataSourceBuilder.create().build();
-    }
-
-    @Bean
-    public AutowireUtil autowireHelper() {
-        return AutowireUtil.getInstance();
+    PlatformTransactionManager stockAppTransactionManager() {
+        return new JpaTransactionManager(stockAppEntityManagerFactory().getObject());
     }
 
     @Bean
