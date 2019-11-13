@@ -1,5 +1,5 @@
 pipeline {
-    agent {label 'java-mvn'}
+    agent { dockerfile true }
     stages {
         stage("Compile") {
             steps {
