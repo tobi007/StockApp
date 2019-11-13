@@ -8,7 +8,7 @@ pipeline {
         }
         stage("Unit test") {
             steps {
-                sh "cd StockApp-Service && mvn test"
+                sh "mvn test"
             }
         }
     }
