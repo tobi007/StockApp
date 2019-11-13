@@ -39,14 +39,6 @@ public class AuthControllerIntegrationTest {
     @Autowired
     JwtTokenProvider jwtTokenProvider;
 
-    @Autowired
-    InvestorRepository investorRepository;
-
-    @After
-    public void CleanUp(){
-        investorRepository.delete(investorRepository.findByUserName("randMe899"));
-    }
-
     @Test
     public void shouldNotAllowAccessToUnauthenticatedUsers() throws Exception {
         mvc.perform(MockMvcRequestBuilders.get("/api/health")).andExpect(status().isUnauthorized());
