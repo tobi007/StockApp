@@ -1,7 +1,5 @@
 pipeline {
-    agent {
-        docker { image 'mzagar/jenkins-slave-jdk-maven-git' }
-    }
+    agent any
     stages {
         stage("Compile") {
             steps {
